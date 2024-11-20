@@ -1,0 +1,8 @@
+SeatID,HallNumber,RowNumber,SeatNumber,IsBooked
+1,1,A,1,False
+2,1,A,2,False
+3,1,A,3,True
+4,2,B,1,False
+5,2,B,2,False
+6,3,C,1,True
+7,3,C,2,False

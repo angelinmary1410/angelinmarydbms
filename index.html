@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .receipt {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-container">
+        <div class="title">Online Movie Ticket Booking</div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter your username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <button onclick="showBookingForm()">Login</button>
+    </div>
+
+    <div class="container" id="booking-container" style="display: none;">
+        <div class="title">Confirm Details</div>
+        <div class="form-group">
+            <label for="tickets">Number of Tickets:</label>
+            <input type="number" id="tickets" placeholder="Enter number of tickets">
+        </div>
+        <div class="form-group">
+            <label for="movie">Movie:</label>
+            <select id="movie">
+                <option value="Robo 2">Robo 2</option>
+                <option value="Avatar">Avatar</option>
+                <option value="Inception">Inception</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="payment">Payment Type:</label>
+            <select id="payment">
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="Net Banking">Net Banking</option>
+                <option value="Paytm Wallet">Paytm Wallet</option>
+            </select>
+        </div>
+        <button onclick="showReceipt()">Make Payment</button>
+    </div>
+
+    <div class="container" id="receipt-container" style="display: none;">
+        <div class="title">Receipt</div>
+        <div class="receipt" id="receipt-details"></div>
+    </div>
+
+    <script>
+        function showBookingForm() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username && password) {
+                document.getElementById("login-container").style.display = "none";
+                document.getElementById("booking-container").style.display = "block";
+            } else {
+                alert("Please enter your username and password.");
+            }
+        }
+
+        function showReceipt() {
+            const tickets = document.getElementById("tickets").value;
+            const movie = document.getElementById("movie").value;
+            const payment = document.getElementById("payment").value;
+
+            if (tickets > 0) {
+                const receiptDetails = `
+                    <p><strong>Number of Tickets:</strong> ${tickets}</p>
+                    <p><strong>Movie:</strong> ${movie}</p>
+                    <p><strong>Payment Type:</strong> ${payment}</p>
+                    <p>Thanks for booking!</p>
+                `;
+                document.getElementById("booking-container").style.display = "none";
+                document.getElementById("receipt-container").style.display = "block";
+                document.getElementById("receipt-details").innerHTML = receiptDetails;
+            } else {
+                alert("Please enter a valid number of tickets.");
+            }
+        }
+    </script>
+</body>
+</html>
